@@ -2,39 +2,41 @@ name: 해달 부트캠프 0주차 과제 채점
 run-name: 채점 결과 - ${{ github.event.head_commit.timestamp }}
 
 on:
-  push:
-    branches: main
+    push:
+        branches: main
 
 jobs:
-  python:
-    if: ${{ contains(github.event.head_commit.message, 'python') }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: 브랜치 가져오기
-        uses: actions/checkout@v4
-      
-      - name: 파이썬 설치
-        uses: actions/setup-python@v5
-        with: 
-          python-version: '3.11'
-        
-      - name: 채점 스크립트 권한 추가
-        run: chmod +x ./grade.sh
-      
-      - name: 파이썬 채점 시작
-        run: ./grade.sh
-  c:
-    if: ${{ contains(github.event.head_commit.message, 'c') }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: 브랜치 가져오기
-        uses: actions/checkout@v4
-      
-      - name: C 설치
-        uses: rlalik/setup-cpp-compiler@master
-        
-      - name: 채점 스크립트 권한 추가
-        run: chmod +x ./grade.sh
-      
-      - name: C 채점 시작
-        run: ./grade.sh c
+    python:
+        if: ${{ contains(github.event.head_commit.message, 'python') }}
+        runs-on: ubuntu-latest
+        steps:
+            - name: 브랜치 가져오기
+              uses: actions/checkout@v4
+
+            - name: 파이썬 설치
+              uses: actions/setup-python@v5
+              with:
+                  python-version: "3.11"
+
+            - name: 채점 스크립트 권한 추가
+              run: chmod +x ./grade.sh
+
+            - name: 파이썬 채점 시작
+              run: ./grade.sh
+    c:
+        if: ${{ contains(github.event.head_commit.message, 'c') }}
+        runs-on: ubuntu-latest
+        steps:
+            - name: 브랜치 가져오기
+              uses: actions/checkout@v4
+
+            - name: C 설치
+              uses: rlalik/setup-cpp-compiler@master
+              with:
+                  compiler: latest
+
+            - name: 채점 스크립트 권한 추가
+              run: chmod +x ./grade.sh
+
+            - name: C 채점 시작
+              run: ./grade.sh c
