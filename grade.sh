@@ -57,6 +57,8 @@ function c_result() {
     fi
 }
 
+replace_string="scanf_s"
+replacement_string="scanf"
 
 for index_of_problem in {1..9}
 do
@@ -74,6 +76,10 @@ do
             echo "$output_file 존재하지 않음"
             exit 1
         fi
+
+        # 문자열 치환
+        sed -i "s/$replace_string/$replacement_string/g" "$input_file"
+
 
         if [ "$1" == "c" ]; then
             result=$(c_result $index_of_problem $input_file $output_file)
