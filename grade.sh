@@ -50,10 +50,6 @@ function c_result() {
 
     # 문자열 치환
     sed -i "s/$replace_string/$replacement_string/g" "./c/$1.out"
-    # 입력 파일의 내용 출력
-    echo "파일 내용:"
-    cat "./c/$1.out"
-    echo    
 
     gcc ./c/$1.c -o ./c/$1.out -w
     result=`cat $2 | ./c/$1.out | tr -d '\r' | tr -d '\t'`
