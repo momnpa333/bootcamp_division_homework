@@ -68,6 +68,10 @@ do
         output_file=$DIR_PATH/answer/$index_of_problem/out$index_of_answer.txt
         # 문자열 치환
         sed -i "s/$replace_string/$replacement_string/g" "$input_file"
+        # 입력 파일의 내용 출력
+        echo "Input 파일 내용:"
+        cat "$input_file"
+        echo
 
         if ! ( test -f "$input_file" ); then
             echo "$input_file 존재하지 않음"
