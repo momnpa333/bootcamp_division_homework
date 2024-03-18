@@ -8,7 +8,7 @@
 int main() {
     // 이곳에 코드를 작성해주세요!
     int num=0;
-    scanf("%d",&num);
+    scanf_s("%d",&num);
     do{
         printf("%d", num%10);
         num/=10;
