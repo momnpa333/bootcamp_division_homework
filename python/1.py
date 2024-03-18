@@ -5,7 +5,7 @@
 
 def main():
     # 이곳에 코드를 작성해주세요!
-
+    print(input()[::-1])
     return
 
 
