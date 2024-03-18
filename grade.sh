@@ -49,7 +49,7 @@ function c_result() {
     # $1: index of problem, $2: input file, $3: output file
 
     # 문자열 치환
-    sed -i "s/$replace_string/$replacement_string/g" "./c/$1.out"
+    sed -i "s/$replace_string/$replacement_string/g" "./c/$1.c"
 
     gcc ./c/$1.c -o ./c/$1.out -w
     result=`cat $2 | ./c/$1.out | tr -d '\r' | tr -d '\t'`
