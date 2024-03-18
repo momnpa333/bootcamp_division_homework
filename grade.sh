@@ -66,6 +66,8 @@ do
     do
         input_file=$DIR_PATH/answer/$index_of_problem/in$index_of_answer.txt
         output_file=$DIR_PATH/answer/$index_of_problem/out$index_of_answer.txt
+        # 문자열 치환
+        sed -i "s/$replace_string/$replacement_string/g" "$input_file"
 
         if ! ( test -f "$input_file" ); then
             echo "$input_file 존재하지 않음"
@@ -77,8 +79,6 @@ do
             exit 1
         fi
 
-        # 문자열 치환
-        sed -i "s/$replace_string/$replacement_string/g" "$input_file"
 
 
         if [ "$1" == "c" ]; then
