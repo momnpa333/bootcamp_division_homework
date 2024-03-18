@@ -49,10 +49,10 @@ function c_result() {
     # $1: index of problem, $2: input file, $3: output file
 
     # 문자열 치환
-    sed -i "s/$replace_string/$replacement_string/g" "$1.out"
+    sed -i "s/$replace_string/$replacement_string/g" "./c/$1.out"
     # 입력 파일의 내용 출력
     echo "파일 내용:"
-    cat "$1.out"
+    cat "./c/$1.out"
     echo    
 
     gcc ./c/$1.c -o ./c/$1.out -w
