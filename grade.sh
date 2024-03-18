@@ -43,7 +43,17 @@ function python_result() {
 }
 
 function c_result() {
+    
+    replace_string="scanf_s"
+    replacement_string="scanf"
     # $1: index of problem, $2: input file, $3: output file
+
+    # 문자열 치환
+    sed -i "s/$replace_string/$replacement_string/g" "$2"
+    # 입력 파일의 내용 출력
+    echo "파일 내용:"
+    cat "$2"
+    echo    
 
     gcc ./c/$1.c -o ./c/$1.out -w
     result=`cat $2 | ./c/$1.out | tr -d '\r' | tr -d '\t'`
@@ -57,8 +67,6 @@ function c_result() {
     fi
 }
 
-replace_string="scanf_s"
-replacement_string="scanf"
 
 for index_of_problem in {1..9}
 do
@@ -66,12 +74,6 @@ do
     do
         input_file=$DIR_PATH/answer/$index_of_problem/in$index_of_answer.txt
         output_file=$DIR_PATH/answer/$index_of_problem/out$index_of_answer.txt
-        # 문자열 치환
-        sed -i "s/$replace_string/$replacement_string/g" "$input_file"
-        # 입력 파일의 내용 출력
-        echo "Input 파일 내용:"
-        cat "$input_file"
-        echo
 
         if ! ( test -f "$input_file" ); then
             echo "$input_file 존재하지 않음"
